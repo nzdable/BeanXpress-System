@@ -2,11 +2,131 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <h1>Landing Page</h1>
+    <title>BeanXpress - Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f4f0; /* Light gray background for better contrast */
+            color: #333;
+            margin: 0;
+            padding: 40px; /* Increased padding for a more spacious layout */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff; /* White background for the form */
+        }
+
+        h1 {
+            text-align: center;
+            color: #845f46; /* Primary color for the heading */
+            margin-bottom: 20px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 40px;
+        }
+
+        .feature {
+            background-color: #f5f4f0;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 30%;
+        }
+
+        .feature h2 {
+            color: #845f46;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #555;
+        }
+
+        .cta {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #845f46; /* Primary button color */
+            color: white;
+            padding: 12px; /* Increased padding for the button */
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            width: 60%;
+            font-size: 16px; /* Larger font for better readability */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        button:hover {
+            background-color: #6b4b34; /* Darker shade on hover */
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px; /* Smaller font size for footer */
+            color: #555; /* Lighter gray for footer text */
+        }
+
+        a {
+            color: #845f46; /* Primary color for links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline; /* Underline on hover for links */
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Welcome Back to BeanXpress</h1>
+
+        <div class="welcome">
+            <p>Hello, we're glad to see you again! Enjoy our exclusive member benefits.</p>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h2>Today's Specials</h2>
+                <p>Check out our special brews and limited-time offers.</p>
+            </div>
+            <div class="feature">
+                <h2>Order History</h2>
+                <p>View your past orders and reorder your favorites with a click.</p>
+            </div>
+            <div class="feature">
+                <h2>Exclusive Deals</h2>
+                <p>Enjoy members-only discounts and promotions.</p>
+            </div>
+        </div>
+
+        <div class="cta">
+            <button onclick="window.location.href='/login'">Log Out</button>
+        </div>
+
+        <div class="footer">
+            <p>Need help? <a href="/support">Contact Support</a></p>
+        </div>
+    </div>
 </body>
 </html>
