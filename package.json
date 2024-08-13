@@ -4,5 +4,15 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "mongoose": "^8.5.2"
-  }
+  },
+  "name": "beanxpress-system",
+  "description": "Installation Setup npm i express npm i ejs npm i mongoose npm i dotenv nodemon src/index.js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
