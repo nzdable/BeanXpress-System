@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import CustomerSignUp from './CustomerSignUp';
 import CustomerLogIn from './CustomerLogIn';
+import CustomerHome from './CustomerHome';  // Import CustomerHome
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
@@ -11,8 +12,9 @@ function App() {
       <Routes>
         <Route path="/customerSignUp" element={<CustomerSignUp />} />
         <Route path="/customerLogIn" element={<CustomerLogIn />} />
-        <Route path="/" element={<Navigate to="/customerSignUp" />} /> {/* Default route */}
-        <Route path="*" element={<h1>404 Not Found</h1>} /> {/* Error handling for undefined paths */}
+        <Route path="/customerHome" element={<CustomerHome />} /> {/* Add this line */}
+        <Route path="/" element={<Navigate to="/customerSignUp" />} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </BrowserRouter>
   );
