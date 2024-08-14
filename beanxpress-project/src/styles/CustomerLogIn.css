@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f4f0; /* Light gray background for better contrast */
+    color: #333;
+    margin: 0;
+    padding: 40px; /* Increased padding for a more spacious layout */
+  }
+  
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f5f4f0; /* White background for the form */
+  }
+  
+  h1 {
+    text-align: center;
+    color: #845f46; /* Primary color for the heading */
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"], input[type="password"], input[type="email"] {
+    width: 100%;
+    padding: 12px; /* Increased padding for input fields */
+    margin: 10px 0;
+    border: 1px solid #845f46; /* Primary color for input borders */
+    border-radius: 10px;
+    box-sizing: border-box; /* Ensures padding is included in width */
+    transition: border-color 0.3s; /* Smooth transition for focus effect */
+    display: flex;
+    height: 100%;
+    background-color: #f5f4f0;
+  }
+  
+  input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+    border-color: #845f46; /* Darker shade on focus */
+    outline: none; /* Remove default outline */
+  }
+  
+  button {
+    background-color: #845f46; /* Primary button color */
+    color: white;
+    padding: 12px; /* Increased padding for the button */
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    width: 60%;
+    font-size: 16px; /* Larger font for better readability */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    margin: 20px 0;
+    text-align: left;
+    padding-left: 20px;
+  }
+  
+  button:hover {
+    background-color: #845f46; /* Darker shade on hover */
+  }
+  
+  .footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px; /* Smaller font size for footer */
+    color: #555; /* Lighter gray for footer text */
+  }
+  
+  a {
+    color: #845f46; /* Primary color for links */
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline; /* Underline on hover for links */
+  }
+  

@@ -1,33 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
 import './styles/CustomerSignUp.css'; 
+import { Link } from "react-router-dom";
 
-const SignUp = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    username: '',
-    password: '',
-  });
+function Signup() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5173/customerSignUp', formData);
-      console.log('Form submitted:', response.data);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    }
+    axios.post('http://127.0.0.1:5173/register', { firstName, lastName, email, username, password })
+      .then(result => console.log(result))
+      .catch(err => console.log(err));
   };
-  
 
   return (
     <div className="container">
@@ -37,51 +25,51 @@ const SignUp = () => {
           type="text"
           name="firstName"
           placeholder="First Name"
-          value={formData.firstName}
-          onChange={handleChange}
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
           required
         />
         <input
           type="text"
           name="lastName"
           placeholder="Last Name"
-          value={formData.lastName}
-          onChange={handleChange}
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
           required
         />
         <input
           type="email"
           name="email"
           placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
           type="text"
           name="username"
           placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)} // Fixed typo here
           required
         />
         <input
           type="password"
           name="password"
           placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <button type="submit">Sign Up</button>
       </form>
       <div className="footer">
         <p>
-          Already have an account? <a href="/customerLogIn">Login</a>
+          Already have an account? <Link to="/customerLogIn">Login</Link>
         </p>
       </div>
     </div>
   );
-};
+}
 
-export default SignUp;
+export default Signup;
