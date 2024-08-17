@@ -47,13 +47,10 @@ app.post("/login", (req, res) => {
                 return res.status(404).json({ error: "User not found" });
             }
 
-            // Compare the password (Assuming you have password hashing)
-            // For now, we'll do a simple comparison
             if (password !== customer.password) {
                 return res.status(401).json({ error: "Incorrect password" });
             }
 
-            // If login is successful
             res.json({ message: "Login successful", user: customer });
         })
         .catch(err => res.status(500).json({ error: err.message }));

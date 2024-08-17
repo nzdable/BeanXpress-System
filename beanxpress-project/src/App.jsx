@@ -12,7 +12,8 @@ function App() {
       <Routes>
         <Route path="/customerSignUp" element={<CustomerSignUp />} />
         <Route path="/customerLogIn" element={<CustomerLogIn />} />
-        <Route path="/customerHome" element={<CustomerHome />} /> {/* Add this line */}
+        <Route path="/customerHome" element={<CustomerHome />} /> 
+        
         <Route path="/" element={<Navigate to="/customerSignUp" />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>

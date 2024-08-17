@@ -11,11 +11,12 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Here we would send the username and password to the backend
     axios.post('http://127.0.0.1:5173/login', { username, password })
       .then((response) => {
         console.log('Login successful:', response.data);
-        navigate('/customerHome'); 
+        // Ensure the response contains the necessary fields
+        const { firstName, lastName, email, username } = response.data;
+        navigate('/customerHome', { state: { customerObject: { firstName, lastName, email, username } } });
       })
       .catch((error) => {
         console.error('There was an error logging in:', error);
