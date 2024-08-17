@@ -1,37 +1,85 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import './styles/CustomerHome.css'; // Import the CSS file
+import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const CustomerHome = () => {
+function CustomerHome() {
   const location = useLocation();
-  const customerObject = location.state?.customerObject;
+  const navigate = useNavigate();
+  const { state } = location;
+  const { firstName, lastName, email, username } = state || {};
 
-  // Debugging: Verify that the customerObject is correctly received
-  console.log('CustomerObject:', customerObject);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editFirstName, setEditFirstName] = useState(firstName || '');
+  const [editLastName, setEditLastName] = useState(lastName || '');
+  const [editEmail, setEditEmail] = useState(email || '');
+  const [editUsername, setEditUsername] = useState(username || '');
 
-  if (!customerObject) {
-    return <p>No customer data available.</p>;
-  }
+  const handleEdit = () => {
+    axios.put('http://127.0.0.1:5173/updateUser', { firstName: editFirstName, lastName: editLastName, email: editEmail, username: editUsername })
+      .then(response => {
+        console.log('User updated successfully', response);
+        setIsEditing(false);
+        // Optionally update the state or redirect
+        navigate('/customerHome', { state: { firstName: editFirstName, lastName: editLastName, email: editEmail, username: editUsername } });
+      })
+      .catch(error => {
+        console.error('Error updating user:', error);
+      });
+  };
+
+  const handleDelete = () => {
+    axios.delete('http://127.0.0.1:5173/deleteUser', { data: { username } })
+      .then(response => {
+        console.log('User deleted successfully', response);
+        navigate('/');
+      })
+      .catch(error => {
+        console.error('Error deleting user:', error);
+      });
+  };
 
   return (
-    <div className="home-container">
-      <div className="home-header">
-        <h1>Welcome, {customerObject.firstName}!</h1>
-        <p>Your username is: {customerObject.username}</p>
-        <p>Your email is: {customerObject.email}</p>
-      </div>
-      <div className="home-nav">
-        <ul>
-          <li><a href="/customerProfile">Go to Profile</a></li>
-          {/* Add more navigation items if needed */}
-        </ul>
-      </div>
-      <div className="home-content">
-        <h2>Additional Information</h2>
-        <p>Here you can find more details about your account and other related information.</p>
-      </div>
+    <div>
+      <h1>Welcome, {isEditing ? editFirstName : firstName}!</h1>
+      {isEditing ? (
+        <div>
+          <input
+            type="text"
+            value={editFirstName}
+            onChange={(e) => setEditFirstName(e.target.value)}
+            placeholder="First Name"
+          />
+          <input
+            type="text"
+            value={editLastName}
+            onChange={(e) => setEditLastName(e.target.value)}
+            placeholder="Last Name"
+          />
+          <input
+            type="email"
+            value={editEmail}
+            onChange={(e) => setEditEmail(e.target.value)}
+            placeholder="Email"
+          />
+          <input
+            type="text"
+            value={editUsername}
+            onChange={(e) => setEditUsername(e.target.value)}
+            placeholder="Username"
+          />
+          <button onClick={handleEdit}>Save Changes</button>
+        </div>
+      ) : (
+        <div>
+          <p><strong>Full Name:</strong> {firstName} {lastName}</p>
+          <p><strong>Email:</strong> {email}</p>
+          <p><strong>Username:</strong> {username}</p>
+          <button onClick={() => setIsEditing(true)}>Edit</button>
+          <button onClick={handleDelete}>Delete</button>
+        </div>
+      )}
     </div>
   );
-};
+}
 
 export default CustomerHome;

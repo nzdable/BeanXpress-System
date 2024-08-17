@@ -1,55 +1,41 @@
 import React, { useState } from 'react';
-import axios from 'axios'; 
-import './styles/CustomerLogIn.css'; 
-import { Link, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const location = useLocation();
   const navigate = useNavigate();
+  const { state } = location;
+  const { firstName, lastName, email, username } = state || {};
 
-  const handleSubmit = (e) => {
+  const [loginUsername, setLoginUsername] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+
+  const handleLogin = (e) => {
     e.preventDefault();
-    
-    axios.post('http://127.0.0.1:5173/login', { username, password })
-      .then((response) => {
-        console.log('Login successful:', response.data);
-        // Ensure the response contains the necessary fields
-        const { firstName, lastName, email, username } = response.data;
-        navigate('/customerHome', { state: { customerObject: { firstName, lastName, email, username } } });
-      })
-      .catch((error) => {
-        console.error('There was an error logging in:', error);
-      });
+    // Perform actual login logic here
+    // Simulate successful login and navigate to CustomerHome
+    navigate('/customerHome', { state: { firstName, lastName, email, username } });
   };
 
   return (
-    <div className="container">
+    <div>
       <h1>Login</h1>
-
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <input 
-          name="username" 
           type="text" 
+          value={loginUsername} 
+          onChange={(e) => setLoginUsername(e.target.value)} 
           placeholder="Username" 
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required 
         />
         <input 
-          name="password" 
           type="password" 
+          value={loginPassword} 
+          onChange={(e) => setLoginPassword(e.target.value)} 
           placeholder="Password" 
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required 
         />
-        <button type="submit">Sign In</button>
-
-        <div className="footer">
-          <p>Don't have an account? <Link to="/customerSignUp">Create a new account</Link></p>
-        </div>
+        <button type="submit">Log In</button>
       </form>
+      <p>Don't have an account? <Link to="/customerSignUp">Sign Up</Link></p>
     </div>
   );
 }
